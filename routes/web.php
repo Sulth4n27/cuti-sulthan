@@ -25,6 +25,9 @@ Route::get('/laporan/pegawai', [LaporanController::class, 'pegawai'])->name('lap
 Route::get('/laporan/cuti', [LaporanController::class, 'cuti'])->name('laporan.cuti');
 Route::get('/laporan/cuti/pdf', [LaporanController::class, 'exportCutiPDF'])->name('laporan.cuti.pdf');
 
+Route::post('/cuti/{id}/update-status', [CutiController::class, 'updateStatus'])->name('cuti.updateStatus');
+
+
 
 // Route logout
 // Route::post('/logout', function () {

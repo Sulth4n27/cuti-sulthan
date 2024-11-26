@@ -11,10 +11,10 @@ class DashboardController extends Controller
     {
         $totalPegawai = Pegawai::count();
         $totalCuti = Cuti::count();
-        $cutiBerlangsung = Cuti::where('tanggal_mulai', '<=', now())
-            ->where('tanggal_selesai', '>=', now())
-            ->count();
+        $cutiBerlangsung = Cuti::where('status', 'disetujui')->count();
+        $cutiPending = Cuti::where('status', 'pending')->count();
+        $cutiditolak = Cuti::where('status', 'ditolak')->count();
 
-        return view('dashboard.index', compact('totalPegawai', 'totalCuti', 'cutiBerlangsung'));
+        return view('dashboard.index', compact('totalPegawai', 'totalCuti', 'cutiBerlangsung', 'cutiPending', 'cutiditolak'));
     }
 }

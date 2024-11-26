@@ -28,7 +28,23 @@ class CutiController extends Controller
             'tanggal_mulai' => 'required|date',
             'tanggal_selesai' => 'required|date|after_or_equal:tanggal_mulai',
             'alasan' => 'required',
+            'status' => 'pending',
+
         ]);
+
+         // Cek apakah pegawai memiliki cuti yang statusnya masih pending atau approved
+    $pegawaiCuti = Cuti::where('pegawai_id', $request->pegawai_id)
+    ->whereIn('status', ['pending', 'disetujui'])
+    ->where(function ($query) use ($request) {
+        $query->whereBetween('tanggal_mulai', [$request->tanggal_mulai, $request->tanggal_selesai])
+              ->orWhereBetween('tanggal_selesai', [$request->tanggal_mulai, $request->tanggal_selesai]);
+    })
+    ->exists();
+
+if ($pegawaiCuti) {
+    return redirect()->back()->with('error', 'Pegawai masih memiliki cuti yang sedang berlangsung atau belum disetujui.');
+}
+
 
         Cuti::create($request->all());
 
@@ -67,4 +83,20 @@ class CutiController extends Controller
 
         return redirect()->route('cuti.index')->with('success', 'Data cuti berhasil dihapus.');
     }
+
+    public function updateStatus(Request $request, $id)
+{
+    $cuti = Cuti::findOrFail($id);
+
+    $request->validate([
+        'status' => 'required|in:disetujui,ditolak',
+    ]);
+
+    $cuti->update([
+        'status' => $request->status,
+    ]);
+
+    return redirect()->route('cuti.index')->with('success', 'Status cuti berhasil diperbarui!');
+}
+
 }

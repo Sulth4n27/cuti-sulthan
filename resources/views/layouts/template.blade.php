@@ -64,6 +64,14 @@
                 </a>
             </li>
 
+            <!-- Nav Item - laporan -->
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('laporan.cuti') }}">
+                    <i class="fas fa-fw fa-calendar-alt"></i>
+                    <span>laporan</span>
+                </a>
+            </li>
+
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
