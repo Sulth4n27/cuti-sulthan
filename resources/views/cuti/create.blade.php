@@ -41,9 +41,15 @@
 
                 <!-- Jenis Cuti -->
                 <div class="form-group">
-                    <label for="jenis_cuti">Jenis Cuti</label>
-                    <input type="text" name="jenis_cuti" id="jenis_cuti" class="form-control @error('jenis_cuti') is-invalid @enderror" value="{{ old('jenis_cuti') }}">
-                    @error('jenis_cuti')
+                    <label for="jenis_cuti">jenis_cuti</label>
+                    <select name="jenis_cuti" id="jenis_cuti" class="form-control @error('jenis_cuti') is-invalid @enderror">
+                        <option value="" disabled selected>-- Pilih jenis cuti anda --</option>
+                        <option value="cuti sakit" {{ old('jenis_cuti', $pegawai->jenis_cuti ?? '') == 'cuti sakit' ? 'selected' : '' }}>cuti sakit</option>
+                        <option value="cuti menikah" {{ old('jenis_cuti', $pegawai->jenis_cuti ?? '') == 'cuti menikah' ? 'selected' : '' }}>cuti menikah</option>
+                        <option value="cuti melahirkan" {{ old('jenis_cuti', $pegawai->jenis_cuti ?? '') == 'cuti melahirkan' ? 'selected' : '' }}>cuti melahirkan</option>
+                        <option value="cuti pendidikan" {{ old('jenis_cuti', $pegawai->jenis_cuti ?? '') == 'cuti pendidikan' ? 'selected' : '' }}>cuti pendidikan</option>
+                    </select>
+                    @error('status')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>

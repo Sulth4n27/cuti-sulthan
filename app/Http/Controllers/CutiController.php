@@ -66,7 +66,7 @@ if ($pegawaiCuti) {
     {
         $request->validate([
             'pegawai_id' => 'required',
-            'jenis_cuti' => 'required',
+            'jenis_cuti' => 'required|in:cuti sakit,cuti menikah,cuti melahirkan,cuti pendidikan',
             'tanggal_mulai' => 'required|date',
             'tanggal_selesai' => 'required|date|after_or_equal:tanggal_mulai',
             'alasan' => 'required',
