@@ -6,9 +6,13 @@ use App\Http\Controllers\CutiController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LaporanController;
 
-
 // Route untuk halaman utama / dashboard
+Route::get('/', function () {
+    return redirect()->route('dashboard');
+});
+
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
 
 // Route resource untuk Pegawai
 Route::resource('pegawai', PegawaiController::class);
@@ -16,15 +20,17 @@ Route::resource('pegawai', PegawaiController::class);
 // Route resource untuk Cuti
 Route::resource('cuti', CutiController::class);
 
-//route laporan
-// Route::get('/laporan/cuti', [LaporanController::class, 'index'])->name('laporan.cuti');
-// Route::get('/laporan/cuti/pdf', [LaporanController::class, 'exportPdf'])->name('laporan.cuti.pdf');
+// Route untuk laporan
+Route::get('/laporan/pegawai', [LaporanController::class, 'pegawai'])->name('laporan.pegawai');
+Route::get('/laporan/cuti', [LaporanController::class, 'cuti'])->name('laporan.cuti');
+Route::get('/laporan/cuti/pdf', [LaporanController::class, 'exportCutiPDF'])->name('laporan.cuti.pdf');
+
 
 // Route logout
-Route::post('/logout', function () {
-    auth()->logout();
-    return redirect('/login')->with('success', 'Berhasil logout.');
-})->name('logout');
+// Route::post('/logout', function () {
+//     auth()->logout();
+//     return redirect('/login')->with('success', 'Berhasil logout.');
+// })->name('logout');
 
 // Route fallback untuk menangani halaman yang tidak ditemukan
 Route::fallback(function () {
