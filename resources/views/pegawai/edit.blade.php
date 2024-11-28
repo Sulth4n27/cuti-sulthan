@@ -66,7 +66,6 @@
                     @enderror
                 </div>
 
-
                 <div class="form-group">
                     <label for="jabatan">jabatan</label>
                     <select name="jabatan" id="jabatan" class="form-control @error('jabatan') is-invalid @enderror">
@@ -87,7 +86,6 @@
                     @enderror
                 </div>
 
-                
                 <div class="form-group">
                     <label for="golongan">golongan</label>
                     <input type="text" name="golongan" id="golongan" class="form-control @error('golongan') is-invalid @enderror" value="{{ old('golongan', $pegawai->golongan) }}" placeholder="Masukkan golongan pegawai">
