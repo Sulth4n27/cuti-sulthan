@@ -7,75 +7,37 @@ use Illuminate\Http\Request;
 
 class PegawaiController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function index(Request $request)
     {
-        $pegawais = Pegawai::all();
-        return view('pegawai.index', compact('pegawais'));
-    }
+        // Ambil parameter pencarian dan filter dari request
+        $search = $request->input('search');
+        $jabatan = $request->input('jabatan');
+        $golongan = $request->input('golongan');
+        $status = $request->input('status');
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        return view('pegawai.create'); // Menampilkan form tambah pegawai
-    }
+        // Query data pegawai dengan pencarian dan filter
+        $pegawais = Pegawai::query()
+    ->when($search, function ($query, $search) {
+        return $query->where('nama', 'like', "%{$search}%")
+            ->orWhere('nip', 'like', "%{$search}%")
+            ->orWhere('nik', 'like', "%{$search}%");
+    })
+    ->when($jabatan, function ($query, $jabatan) {
+        return $query->where('jabatan', $jabatan);
+    })
+    ->when($golongan, function ($query, $golongan) {
+        return $query->where('golongan', $golongan);
+    })
+    ->when($status, function ($query, $status) {
+        return $query->where('status', $status);
+    })
+    ->paginate(10); // Pagination dengan 10 data per halaman
 
-    public function store(Request $request)
-    {
-        // Validasi data input
-        $request->validate([
-            'nama' => 'required',
-            'nip' => 'required',
-            'nik' => 'required',
-            'status' => 'required',
-            'jabatan' => 'required',
-            'golongan' => 'required',
-            'jeniskelamin' => 'required',
-            'alamat' => 'nullable',
-        ]);
+        // Ambil data untuk dropdown filter (jabatan, golongan, status)
+        $jabatans = Pegawai::select('jabatan')->distinct()->pluck('jabatan');
+        $golongans = Pegawai::select('golongan')->distinct()->pluck('golongan');
+        $statuses = Pegawai::select('status')->distinct()->pluck('status');
 
-        // Simpan data pegawai baru
-        Pegawai::create($request->all());
-        return redirect()->route('pegawai.index')->with('success', 'Pegawai berhasil ditambahkan.');
-    }
-
-    public function show(Pegawai $pegawai)
-    {
-        return view('pegawai.show', compact('pegawai'));
-    }
-
-    public function edit(Pegawai $pegawai)
-    {
-        return view('pegawai.edit', compact('pegawai'));
-    }
-
-    public function update(Request $request, Pegawai $pegawai)
-    {
-        // Validasi data input
-        $request->validate([
-            'nama' => 'required',
-            'nip' => 'required',
-            'nik' => 'required',
-            'status' => 'required|in:ASN,NON ASN',
-            'jabatan' => 'required|in: Kepala Badan BKPSDM,Sekretaris,Kepala Bagian Umum,
-            Kabid Pengambangan sumber daya manusia,Kabid perencanaan dan pengembangan,
-            Kabid Mutasi,Bagian Keuangan,Staff BKPSDM',
-            'golongan' => 'required',
-            'jeniskelamin' => 'required|in:LK,PR',
-            'alamat' => 'nullable',
-        ]);
-
-        $pegawai->update($request->all());
-        return redirect()->route('pegawai.index')->with('success', 'Pegawai berhasil diupdate.');
-    }
-
-    public function destroy(Pegawai $pegawai)
-    {
-        $pegawai->delete();
-        return redirect()->route('pegawai.index')->with('success', 'Pegawai berhasil dihapus.');
+        return view('pegawai.index', compact('pegawais', 'jabatans', 'golongans', 'statuses'));
     }
 }

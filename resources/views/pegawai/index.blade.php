@@ -9,6 +9,49 @@
             <i class="fas fa-plus"></i> Tambah Pegawai
         </a>
     </div>
+    <div class="card mb-3">
+        <div class="card-body">
+            <form method="GET" action="{{ route('pegawai.index') }}">
+                <div class="row">
+                    <!-- Input Pencarian -->
+                    <div class="col-md-3">
+                        <input type="text" name="search" class="form-control" placeholder="Cari Nama, NIP, atau NIK" value="{{ request('search') }}">
+                    </div>
+                    <!-- Filter Jabatan -->
+                    <div class="col-md-3">
+                        <select name="jabatan" class="form-control">
+                            <option value="">Semua Jabatan</option>
+                            @foreach($jabatans as $jab)
+                                <option value="{{ $jab }}" {{ request('jabatan') == $jab ? 'selected' : '' }}>{{ $jab }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <!-- Filter Golongan -->
+                    <div class="col-md-2">
+                        <select name="golongan" class="form-control">
+                            <option value="">Semua Golongan</option>
+                            @foreach($golongans as $gol)
+                                <option value="{{ $gol }}" {{ request('golongan') == $gol ? 'selected' : '' }}>{{ $gol }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <!-- Filter Status -->
+                    <div class="col-md-2">
+                        <select name="status" class="form-control">
+                            <option value="">Semua Status</option>
+                            @foreach($statuses as $stat)
+                                <option value="{{ $stat }}" {{ request('status') == $stat ? 'selected' : '' }}>{{ $stat }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <!-- Tombol Filter -->
+                    <div class="col-md-2">
+                        <button type="submit" class="btn btn-primary w-100">Filter</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 
 
     <!-- Flash Message -->
@@ -28,23 +71,23 @@
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-bordered">
                     <thead>
                         <tr>
                             <th>No</th>
                             <th>Nama</th>
-                            <th>Nip</th>
-                            <th>Nik</th>
+                            <th>NIP</th>
+                            <th>NIK</th>
                             <th>Status</th>
                             <th>Jabatan</th>
                             <th>Golongan</th>
-                            <th>JenisKelamin</th>
+                            <th>Jenis Kelamin</th>
                             <th>Alamat</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($pegawais as $pegawai)
+                        @forelse($pegawais as $pegawai)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $pegawai->nama }}</td>
@@ -55,20 +98,28 @@
                             <td>{{ $pegawai->golongan }}</td>
                             <td>{{ $pegawai->jeniskelamin }}</td>
                             <td>{{ $pegawai->alamat }}</td>
-
                             <td>
-                                <a href="{{ route('pegawai.show', $pegawai->id) }}" class="btn btn-info btn-sm">Detail</a>
-                                <a href="{{ route('pegawai.edit', $pegawai->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                                <form action="{{ route('pegawai.destroy', $pegawai->id) }}" method="POST" style="display:inline;">
+                                <a href="{{ route('pegawai.show', $pegawai) }}" class="btn btn-info btn-sm">Detail</a>
+                                <a href="{{ route('pegawai.edit', $pegawai) }}" class="btn btn-warning btn-sm">Edit</a>
+                                <form action="{{ route('pegawai.destroy', $pegawai) }}" method="POST" class="d-inline">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus?')">Hapus</button>
+                                    <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
                                 </form>
                             </td>
                         </tr>
-                        @endforeach
+                        @empty
+                        <tr>
+                            <td colspan="10" class="text-center">Data tidak ditemukan.</td>
+                        </tr>
+                        @endforelse
                     </tbody>
                 </table>
+                <!-- Navigasi Pagination -->
+                <div class="d-flex justify-content-center">
+                    {{ $pegawais->links() }}
+                </div>
+                
             </div>
         </div>
     </div>
