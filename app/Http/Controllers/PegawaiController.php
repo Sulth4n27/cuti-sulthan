@@ -40,4 +40,81 @@ class PegawaiController extends Controller
 
         return view('pegawai.index', compact('pegawais', 'jabatans', 'golongans', 'statuses'));
     }
+
+    public function create()
+    {
+        return view('pegawai.create'); // Return ke view 'pegawai.create'
+    }
+
+    /**
+     * Menyimpan data pegawai baru ke database.
+     */
+    public function store(Request $request)
+    {
+        // Validasi input
+        $request->validate([
+            'nama' => 'required',
+            'nip' => 'required|numeric',
+            'nik' => 'required|numeric',
+            'status' => 'required',
+            'jabatan' => 'required',
+            'golongan' => 'required',
+            'jeniskelamin' => 'required',
+            'alamat' => 'nullable',
+        ]);
+
+        // Simpan data pegawai
+        Pegawai::create($request->all());
+
+        return redirect()->route('pegawai.index')->with('success', 'Pegawai berhasil ditambahkan.');
+    }
+
+    /**
+     * Menampilkan detail pegawai berdasarkan ID.
+     */
+    public function show(Pegawai $pegawai)
+    {
+        return view('pegawai.show', compact('pegawai')); // Return ke view 'pegawai.show'
+    }
+
+    /**
+     * Menampilkan form untuk mengedit pegawai.
+     */
+    public function edit(Pegawai $pegawai)
+    {
+        return view('pegawai.edit', compact('pegawai')); // Return ke view 'pegawai.edit'
+    }
+
+    /**
+     * Memperbarui data pegawai di database.
+     */
+    public function update(Request $request, Pegawai $pegawai)
+    {
+        // Validasi input
+        $request->validate([
+            'nama' => 'required',
+            'nip' => 'required|numeric',
+            'nik' => 'required|numeric',
+            'status' => 'required',
+            'jabatan' => 'required',
+            'golongan' => 'required',
+            'jeniskelamin' => 'required',
+            'alamat' => 'nullable',
+        ]);
+
+        // Update data pegawai
+        $pegawai->update($request->all());
+
+        return redirect()->route('pegawai.index')->with('success', 'Pegawai berhasil diupdate.');
+    }
+
+    /**
+     * Menghapus data pegawai dari database.
+     */
+    public function destroy(Pegawai $pegawai)
+    {
+        $pegawai->delete(); // Hapus data pegawai
+        return redirect()->route('pegawai.index')->with('success', 'Pegawai berhasil dihapus.');
+    }
 }
+

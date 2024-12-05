@@ -119,7 +119,7 @@
                 <div class="d-flex justify-content-center">
                     {{ $pegawais->links() }}
                 </div>
-                
+
             </div>
         </div>
     </div>

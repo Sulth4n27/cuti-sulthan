@@ -8,13 +8,30 @@ use App\Models\Cuti;
 class DashboardController extends Controller
 {
     public function index()
-    {
-        $totalPegawai = Pegawai::count();
-        $totalCuti = Cuti::count();
-        $cutiBerlangsung = Cuti::where('status', 'disetujui')->count();
-        $cutiPending = Cuti::where('status', 'pending')->count();
-        $cutiditolak = Cuti::where('status', 'ditolak')->count();
+{
+    // Ambil data untuk dashboard
+    $totalPegawai = Pegawai::count();
+    $totalCuti = Cuti::count();
+    $cutiPending = Cuti::where('status', 'pending')->count();
+    $cutiDitolak = Cuti::where('status', 'ditolak')->count();
+    $cutiBerlangsung = Cuti::where('status', 'berlangsung')->count();
 
-        return view('dashboard.index', compact('totalPegawai', 'totalCuti', 'cutiBerlangsung', 'cutiPending', 'cutiditolak'));
-    }
+    // Data untuk grafik
+    $cutiStatus = Cuti::selectRaw('status, count(*) as total')
+                        ->groupBy('status')
+                        ->pluck('total', 'status');
+
+    
+
+    return view('dashboard.index', compact(
+        'totalPegawai',
+        'totalCuti',
+        'cutiPending',
+        'cutiDitolak',
+        'cutiBerlangsung',
+        'cutiStatus'
+    ));
+}
+
+
 }

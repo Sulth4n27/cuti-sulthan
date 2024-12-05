@@ -46,12 +46,12 @@
     <!-- Nav Item - Pegawai -->
     <li class="nav-item">
         <a class="nav-link" href="{{ route('laporan.cuti') }}">
-            <i class="fas fa-fw fa-users"></i>
+            <i class="fas fa-fw fa-file-pdf"></i>
             <span>laporan</span>
         </a>
     </li>
 
-    <!-- Nav Item - Logout -->
+    {{-- <!-- Nav Item - Logout -->
     <li class="nav-item">
         <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
             <i class="fas fa-sign-out-alt"></i>
@@ -60,5 +60,5 @@
     </li>
     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
         @csrf
-    </form>
+    </form> --}}
 </ul>
