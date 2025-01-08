@@ -43,6 +43,14 @@
         </a>
     </li>
 
+        <!-- User Management -->
+        <li class="nav-item >
+            <a class="nav-link" href="{{ route('users.index') }}">
+                <i class="fas fa-fw fa-users"></i>
+                <span>Users</span>
+            </a>
+        </li>
+
     <!-- Nav Item - Pegawai -->
     <li class="nav-item">
         <a class="nav-link" href="{{ route('laporan.cuti') }}">

@@ -22,6 +22,14 @@
     <!-- Divider -->
     <hr class="sidebar-divider">
 
+         {{-- <!-- User Management -->
+         <li class="nav-item {{ Request::is('users*') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('users.index') }}">
+                <i class="fas fa-fw fa-users"></i>
+                <span>Users</span>
+            </a>
+        </li> --}}
+
     <!-- Heading -->
     <div class="sidebar-heading">
         Menu
@@ -35,7 +43,7 @@
         </a>
     </li>
 
-    <!-- Nav Item - Pegawai -->
+    <!-- Nav Item - Cuti -->
     <li class="nav-item">
         <a class="nav-link" href="{{ route('cuti.index') }}">
             <i class="fas fa-fw fa-calendar-alt"></i>
@@ -43,7 +51,15 @@
         </a>
     </li>
 
-    <!-- Nav Item - Pegawai -->
+        {{-- <!-- User Management -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="{{ route('user.index') }}">
+                <i class="fas fa-fw fa-user"></i>
+                <span>Data User</span>
+            </a>
+        </li> --}}
+
+    <!-- Nav Item - Laporan -->
     <li class="nav-item">
         <a class="nav-link" href="{{ route('laporan.cuti') }}">
             <i class="fas fa-fw fa-file-pdf"></i>
@@ -51,14 +67,13 @@
         </a>
     </li>
 
-    {{-- <!-- Nav Item - Logout -->
-    <li class="nav-item">
-        <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-            <i class="fas fa-sign-out-alt"></i>
-            <span>Logout</span>
-        </a>
-    </li>
-    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+
+    <form method="POST" action="{{ route('logout') }}" class="nav-item">
         @csrf
-    </form> --}}
+        <button type="submit" class="nav-link btn btn-danger text-left">
+            <i class="fas fa-sign-out-alt fa-fw"></i>
+            Logout
+        </button>
+    </form>
+
 </ul>

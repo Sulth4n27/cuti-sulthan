@@ -4,44 +4,39 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\View\View;
 
 class UserController extends Controller
 {
-    // Fungsi untuk menampilkan daftar user
-    public function index(): View
+
+    public function index()
+{
+    $users = User::all();
+    return view('users.index', compact('users'));
+}
+
+    public function create()
     {
-        // Mengambil semua data user dari database dan mengirimkannya ke view 'user.index'
-        return view('user.index', [
-            "title" => "Data user",
-            "data" => User::all()
-        ]);
+
+        return view('users.create') ;
     }
 
-    // Fungsi untuk menyimpan user baru
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request)
     {
-        // Validasi input dari form tambah user
         $request->validate([
-            "name" => "required",
-            "email" => "required",
-            "password" => "required"
+            'name' => 'required|string|max:255',
+            'username' => 'required|string|max:255|unique:users',
+            'password' => 'required|string|min:6',
+            'role' => 'required|string',
         ]);
 
-        // Melakukan hashing pada password sebelum disimpan ke database
-        $password = Hash::make($request->password);
-
-        // Menggabungkan hasil hash password ke dalam request yang akan disimpan
-        $request->merge([
-            "password" => $password
+        User::create([
+            'name' => $request->name,
+            'username' => $request->username,
+            'password' => Hash::make($request->password),
+            'role' => $request->role,
         ]);
 
-        // Menyimpan data user yang baru ke database
-        User::create($request->all());
-
-        // Redirect ke halaman daftar user dengan pesan sukses
-        return redirect()->route('user.index')->with('success', 'Data User Berhasil Ditambahkan');
+        return redirect()->route('users.index')->with('success', 'User berhasil ditambahkan.');
     }
 }

@@ -110,7 +110,7 @@
                         </tr>
                         @empty
                         <tr>
-                            <td colspan="10" class="text-center">Data tidak ditemukan.</td>
+                            <td colspan="10" class="text-center">Data Pegawai tidak ditemukan.</td>
                         </tr>
                         @endforelse
                     </tbody>

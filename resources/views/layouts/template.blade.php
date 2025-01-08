@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{{-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -10,7 +10,7 @@
     <!-- SB Admin Styles -->
     <link href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
-
+    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     @stack('styles') <!-- Untuk custom CSS tambahan -->
 </head>
 
@@ -151,4 +151,4 @@
 
 </body>
 
-</html>
+</html> --}}

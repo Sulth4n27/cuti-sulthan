@@ -69,7 +69,7 @@
                         </span>
                     @endif
 
-                    
+
                 <td>
                     <a href="{{ route('cuti.edit', $cuti->id) }}" class="btn btn-sm btn-primary">Edit</a>
                     <form action="{{ route('cuti.destroy', $cuti->id) }}" method="POST" style="display:inline;">
