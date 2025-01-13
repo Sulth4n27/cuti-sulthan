@@ -6,6 +6,19 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 mx-auto">
+
+            <div class="col-md-6">
+                @if ($errors->any())
+                <div class="alert alert-danger">
+                    <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                @endif
+                
             <h4>Form Tambah User</h4>
             <form action="{{ route('users.store') }}" method="POST">
                 @csrf

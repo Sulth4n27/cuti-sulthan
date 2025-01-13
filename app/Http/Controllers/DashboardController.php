@@ -21,7 +21,7 @@ class DashboardController extends Controller
                         ->groupBy('status')
                         ->pluck('total', 'status');
 
-    
+
 
     return view('dashboard.index', compact(
         'totalPegawai',
