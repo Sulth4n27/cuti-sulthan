@@ -9,29 +9,37 @@ class DashboardController extends Controller
 {
     public function index()
 {
+    $tanggal_mulai = '2025-01-01';
+
     // Ambil data untuk dashboard
+    $pegawaicuti = Cuti::where('tanggal_mulai', $tanggal_mulai)->first();
+
+if (!$pegawaicuti) {
+    $message = 'Belum ada data cuti pada tanggal tersebut.';
+}
+
     $totalPegawai = Pegawai::count();
     $totalCuti = Cuti::count();
-    $cutiPending = Cuti::where('status', 'pending')->count();
+    $cutisetuju = Cuti::where('status', 'disetujui')->count();
     $cutiDitolak = Cuti::where('status', 'ditolak')->count();
-    $cutiBerlangsung = Cuti::where('status', 'berlangsung')->count();
+    $cutipending = Cuti::where('status', 'pending')->count();
 
-    // Data untuk grafik
     $cutiStatus = Cuti::selectRaw('status, count(*) as total')
                         ->groupBy('status')
                         ->pluck('total', 'status');
 
-
-
     return view('dashboard.index', compact(
         'totalPegawai',
         'totalCuti',
-        'cutiPending',
+        'cutisetuju',
         'cutiDitolak',
-        'cutiBerlangsung',
-        'cutiStatus'
+        'cutipending',
+        'cutiStatus',
+        'pegawaicuti'
     ));
 }
+
+
 
 
 }

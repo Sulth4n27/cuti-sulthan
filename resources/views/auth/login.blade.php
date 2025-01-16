@@ -43,7 +43,6 @@
 </head>
 
 <body>
-
     <div class="container vh-100 d-flex justify-content-center align-items-center">
         <div class="row">
             <div class="col-lg-12">

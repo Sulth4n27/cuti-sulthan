@@ -78,7 +78,7 @@
                         <option value="Bagian Keuangan" {{ old('jabatan', $pegawai->jabatan ?? '') == 'Bagian Keuangan' ? 'selected' : '' }}>Bagian Keuangan</option>
                         <option value="Staff BKPSDM" {{ old('jabatan', $pegawai->jabatan ?? '') == 'Staff BKPSDM' ? 'selected' : '' }}>Staff BKPSDM</option>
                     </select>
-                    @error('status')
+                    @error('jabatan')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>
@@ -87,8 +87,29 @@
 
 
                     <div class="form-group">
-                    <label for="golongan">golongan</label>
-                    <input type="text" name="golongan" id="golongan" class="form-control @error('golongan') is-invalid @enderror" value="{{ old('golongan') }}" placeholder="Masukkan golongan pegawai">
+                        <label for="golongan">golongan</label>
+                        <select name="golongan" id="golongan" class="form-control @error('golongan') is-invalid @enderror">
+                            <option value="" disabled selected>-- Pilih Golongan anda --</option>
+                            <option value="1A" {{ old('golongan', $pegawai->golongan ?? '') == '1A' ? 'selected' : '' }}>1A</option>
+                            <option value="1B" {{ old('golongan', $pegawai->golongan ?? '') == '1B' ? 'selected' : '' }}>1B</option>
+                            <option value="1C" {{ old('golongan', $pegawai->golongan ?? '') == '1C' ? 'selected' : '' }}>1C</option>
+                            <option value="1D" {{ old('golongan', $pegawai->golongan ?? '') == '1D' ? 'selected' : '' }}>1D</option>
+
+                            <option value="2A" {{ old('golongan', $pegawai->golongan ?? '') == '2A' ? 'selected' : '' }}>2A</option>
+                            <option value="2B" {{ old('golongan', $pegawai->golongan ?? '') == '2B' ? 'selected' : '' }}>2B</option>
+                            <option value="2C" {{ old('golongan', $pegawai->golongan ?? '') == '2C' ? 'selected' : '' }}>2C</option>
+                            <option value="2D" {{ old('golongan', $pegawai->golongan ?? '') == '2D' ? 'selected' : '' }}>2D</option>
+
+                            <option value="3A" {{ old('golongan', $pegawai->golongan ?? '') == '3A' ? 'selected' : '' }}>3A</option>
+                            <option value="3B" {{ old('golongan', $pegawai->golongan ?? '') == '3B' ? 'selected' : '' }}>3B</option>
+                            <option value="3C" {{ old('golongan', $pegawai->golongan ?? '') == '3C' ? 'selected' : '' }}>3C</option>
+                            <option value="3D" {{ old('golongan', $pegawai->golongan ?? '') == '3D' ? 'selected' : '' }}>3D</option>
+
+                            <option value="4A" {{ old('golongan', $pegawai->golongan ?? '') == '4A' ? 'selected' : '' }}>4A</option>
+                            <option value="4B" {{ old('golongan', $pegawai->golongan ?? '') == '4B' ? 'selected' : '' }}>4B</option>
+                            <option value="4C" {{ old('golongan', $pegawai->golongan ?? '') == '4C' ? 'selected' : '' }}>4C</option>
+                            <option value="4D" {{ old('golongan', $pegawai->golongan ?? '') == '4D' ? 'selected' : '' }}>4D</option>
+                        </select>
                     @error('golongan')
                     <div class="invalid-feedback">
                         {{ $message }}
@@ -104,7 +125,7 @@
                         <option value="LK" {{ old('jeniskelamin', $pegawai->jeniskelamin ?? '') == 'LK' ? 'selected' : '' }}>LK</option>
                         <option value="PR" {{ old('jeniskelamin', $pegawai->jeniskelamin ?? '') == 'PR' ? 'selected' : '' }}>PR</option>
                     </select>
-                    @error('status')
+                    @error('jeniskelamin')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>

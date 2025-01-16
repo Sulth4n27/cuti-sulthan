@@ -10,14 +10,25 @@ class CutiController extends Controller
 {
     public function index()
     {
+            // Inisialisasi tanggal mulai
+    $tanggal_mulai = '2025-01-01'; // Nilai default atau ambil dari input request
+
+    // Ambil data untuk dashboard
+    $pegawaicuti = Cuti::where('tanggal_mulai', $tanggal_mulai)->first();
+
         $cutis = Cuti::with('pegawai')->get();
-        return view('cuti.index', compact('cutis'));
+        return view('cuti.index', compact('cutis', 'pegawaicuti'));
     }
 
     public function create()
     {
+            // Inisialisasi tanggal mulai
+    $tanggal_mulai = '2025-01-01'; // Nilai default atau ambil dari input request
+
+    // Ambil data untuk dashboard
+    $pegawaicuti = Cuti::where('tanggal_mulai', $tanggal_mulai)->first();
         $pegawais = Pegawai::all();
-        return view('cuti.create', compact('pegawais'));
+        return view('cuti.create', compact('pegawais', 'pegawaicuti'));
     }
 
     public function store(Request $request)
@@ -34,7 +45,7 @@ class CutiController extends Controller
 
          // Cek apakah pegawai memiliki cuti yang statusnya masih pending atau approved
     $pegawaiCuti = Cuti::where('pegawai_id', $request->pegawai_id)
-    ->whereIn('status', ['pending', 'disetujui'])
+    ->whereIn('status', ['setuju', 'ditolak'])
     ->where(function ($query) use ($request) {
         $query->whereBetween('tanggal_mulai', [$request->tanggal_mulai, $request->tanggal_selesai])
               ->orWhereBetween('tanggal_selesai', [$request->tanggal_mulai, $request->tanggal_selesai]);
@@ -53,13 +64,23 @@ if ($pegawaiCuti) {
 
     public function show(Cuti $cuti)
     {
-        return view('cuti.show', compact('cuti'));
+            // Inisialisasi tanggal mulai
+    $tanggal_mulai = '2025-01-01'; // Nilai default atau ambil dari input request
+
+    // Ambil data untuk dashboard
+    $pegawaicuti = Cuti::where('tanggal_mulai', $tanggal_mulai)->first();
+        return view('cuti.show', compact('cuti', 'pegawaicuti'));
     }
 
     public function edit(Cuti $cuti)
     {
+            // Inisialisasi tanggal mulai
+    $tanggal_mulai = '2025-01-01'; // Nilai default atau ambil dari input request
+
+    // Ambil data untuk dashboard
+    $pegawaicuti = Cuti::where('tanggal_mulai', $tanggal_mulai)->first();
         $pegawais = Pegawai::all();
-        return view('cuti.edit', compact('cuti', 'pegawais'));
+        return view('cuti.edit', compact('cuti', 'pegawais', 'pegawaicuti'));
     }
 
     public function update(Request $request, Cuti $cuti)

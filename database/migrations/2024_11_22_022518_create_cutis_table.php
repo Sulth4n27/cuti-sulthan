@@ -11,6 +11,7 @@ class CreateCutisTable extends Migration
         Schema::create('cutis', function (Blueprint $table) {
             $table->id();
             $table->foreignId('pegawai_id')->constrained('pegawais')->onDelete('cascade'); // Relasi ke tabel Pegawai
+            $table->foreignId('user_id')->unsigned();
             $table->string('jenis_cuti');
             $table->date('tanggal_mulai');
             $table->date('tanggal_selesai');

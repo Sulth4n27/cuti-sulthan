@@ -22,5 +22,11 @@ class Cuti extends Model
     {
         return $this->belongsTo(Pegawai::class, 'pegawai_id');
     }
+
+    public function getTanggalMulaiAttribute()
+{
+    return $this->attributes['tanggal_mulai'];
+}
+
 }
 

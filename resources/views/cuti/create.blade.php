@@ -48,6 +48,13 @@
                         <option value="cuti menikah" {{ old('jenis_cuti', $pegawai->jenis_cuti ?? '') == 'cuti menikah' ? 'selected' : '' }}>cuti menikah</option>
                         <option value="cuti melahirkan" {{ old('jenis_cuti', $pegawai->jenis_cuti ?? '') == 'cuti melahirkan' ? 'selected' : '' }}>cuti melahirkan</option>
                         <option value="cuti pendidikan" {{ old('jenis_cuti', $pegawai->jenis_cuti ?? '') == 'cuti pendidikan' ? 'selected' : '' }}>cuti pendidikan</option>
+                        <option value="cuti tahunan" {{ old('jenis_cuti', $pegawai->jenis_cuti ?? '') == 'cuti tahunan' ? 'selected' : '' }}>cuti tahunan</option>
+                        <option value="cuti bersama" {{ old('jenis_cuti', $pegawai->jenis_cuti ?? '') == 'cuti bersama' ? 'selected' : '' }}>cuti bersama</option>
+                        <option value="cuti menikahkan anak" {{ old('jenis_cuti', $pegawai->jenis_cuti ?? '') == 'cuti menikahkan anak' ? 'selected' : '' }}>cuti menikahkan anak</option>
+                        <option value="cuti liburan" {{ old('jenis_cuti', $pegawai->jenis_cuti ?? '') == 'cuti liburan' ? 'selected' : '' }}>cuti liburan</option>
+                        <option value="cuti hari libur nasional" {{ old('jenis_cuti', $pegawai->jenis_cuti ?? '') == 'cuti hari libur nasional' ? 'selected' : '' }}>cuti hari libur nasional</option>
+                        <option value="cuti hari besar keagamaan" {{ old('jenis_cuti', $pegawai->jenis_cuti ?? '') == 'cuti hari besar keagamaan' ? 'selected' : '' }}>cuti hari besar keagamaan</option>
+                        <option value="cuti kedukaan" {{ old('jenis_cuti', $pegawai->jenis_cuti ?? '') == 'cuti kedukaan' ? 'selected' : '' }}>cuti kedukaan</option>
                     </select>
                     @error('status')
                     <div class="invalid-feedback">
@@ -81,7 +88,7 @@
                 <!-- Alasan -->
                 <div class="form-group">
                     <label for="alasan">Alasan</label>
-                    <textarea name="alasan" id="alasan" rows="3" class="form-control @error('alasan') is-invalid @enderror" placeholder="Masukkan alasan atau alasan cuti">{{ old('alasan') }}</textarea>
+                    <textarea name="alasan" id="alasan" rows="3" class="form-control @error('alasan') is-invalid @enderror" placeholder="Masukkan alasan cuti">{{ old('alasan') }}</textarea>
                     @error('alasan')
                     <div class="invalid-feedback">
                         {{ $message }}

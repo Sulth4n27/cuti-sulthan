@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Admin Dashboard')
+@section('title', 'Dashboard')
 @section('content')
 <!-- Begin Page Content -->
 <div class="container-fluid">
@@ -52,11 +52,12 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                Cuti Pending</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $cutiPending }}</div>
+                                Cuti Disetujui</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $cutisetuju }}</div>
                         </div>
                         <div class="col-auto">
-                            <i class="fas fa-clock fa-2x text-gray-300"></i>
+                            <i class="fas fa-hourglass-half fa-2x text-gray-300"></i>
+
                         </div>
                     </div>
                 </div>
@@ -90,11 +91,11 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                Cuti Berlangsung</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $cutiBerlangsung }}</div>
+                                Cuti Pending</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $cutipending }}</div>
                         </div>
                         <div class="col-auto">
-                            <i class="fas fa-hourglass-half fa-2x text-gray-300"></i>
+                            <i class="fas fa-clock fa-2x text-gray-300"></i>
                         </div>
                     </div>
                 </div>
@@ -127,7 +128,7 @@
             labels: ['ASN', 'NON ASN'],
             datasets: [{
                 data: [10, 5],
-                backgroundColor: ['#4e73df', '#1cc88a'],
+                backgroundColor: ['#4e73df', '#f6c23e'],
                 borderWidth: 1
             }]
         },

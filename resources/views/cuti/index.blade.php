@@ -36,7 +36,9 @@
             <th>Tanggal Mulai</th>
             <th>Tanggal Selesai</th>
             <th>Alasan</th>
+            @if (Auth::check() && Auth::user()->role === 'admin')
             <th>status</th>
+            @endif
             <th>Aksi</th>
         </tr>
     </thead>
@@ -49,25 +51,29 @@
             <td>{{ $cuti->tanggal_mulai }}</td>
             <td>{{ $cuti->tanggal_selesai }}</td>
             <td>{{ $cuti->alasan }}</td>
+            @if (Auth::check() && Auth::user()->role === 'admin')
             <td>
 
                 <!-- status cuti -->
-                    @if($cuti->status == 'pending')
-                        <form action="{{ route('cuti.updateStatus', $cuti->id) }}" method="POST" style="display: inline;">
-                            @csrf
-                            <input type="hidden" name="status" value="disetujui">
-                            <button type="submit" class="btn btn-success btn-sm">Setujui</button>
-                        </form>
-                        <form action="{{ route('cuti.updateStatus', $cuti->id) }}" method="POST" style="display: inline;">
-                            @csrf
-                            <input type="hidden" name="status" value="ditolak">
-                            <button type="submit" class="btn btn-danger btn-sm">Tolak</button>
-                        </form>
-                    @else
-                        <span class="badge badge-{{ $cuti->status == 'approved' ? 'success' : 'danger' }}">
-                            {{ ucfirst($cuti->status) }}
-                        </span>
+
+                @if($cuti->status == 'pending')
+                <form action="{{ route('cuti.updateStatus', $cuti->id) }}" method="POST" style="display: inline;">
+                    @csrf
+                    <input type="hidden" name="status" value="disetujui">
+                    <button type="submit" class="btn btn-success btn-sm">Setujui</button>
+                </form>
+                <form action="{{ route('cuti.updateStatus', $cuti->id) }}" method="POST" style="display: inline;">
+                    @csrf
+                    <input type="hidden" name="status" value="ditolak">
+                    <button type="submit" class="btn btn-danger btn-sm">Tolak</button>
+                </form>
+            @else
+                <span class="badge badge-{{ $cuti->status == 'approved' ? 'success' : 'danger' }}">
+                    {{ ucfirst($cuti->status) }}
+                </span>
+            @endif
                     @endif
+
 
 
                 <td>

@@ -3,12 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pegawai;
+use App\Models\Cuti;
 use Illuminate\Http\Request;
 
 class PegawaiController extends Controller
 {
     public function index(Request $request)
     {
+            // Inisialisasi tanggal mulai
+            $tanggal_mulai = '2025-01-01'; // Nilai default atau ambil dari input request
+
+            // Ambil data untuk dashboard
+            $pegawaicuti = Cuti::where('tanggal_mulai', $tanggal_mulai)->first();
+
         // Ambil parameter pencarian dan filter dari request
         $search = $request->input('search');
         $jabatan = $request->input('jabatan');
@@ -38,12 +45,17 @@ class PegawaiController extends Controller
         $golongans = Pegawai::select('golongan')->distinct()->pluck('golongan');
         $statuses = Pegawai::select('status')->distinct()->pluck('status');
 
-        return view('pegawai.index', compact('pegawais', 'jabatans', 'golongans', 'statuses'));
+        return view('pegawai.index', compact('pegawais', 'jabatans', 'golongans', 'statuses', 'pegawaicuti'));
     }
 
     public function create()
     {
-        return view('pegawai.create'); // Return ke view 'pegawai.create'
+            // Inisialisasi tanggal mulai
+    $tanggal_mulai = '2025-01-01'; // Nilai default atau ambil dari input request
+
+    // Ambil data untuk dashboard
+    $pegawaicuti = Cuti::where('tanggal_mulai', $tanggal_mulai)->first();
+        return view('pegawai.create', compact('pegawaicuti')); // Return ke view 'pegawai.create'
     }
 
     /**
@@ -74,7 +86,12 @@ class PegawaiController extends Controller
      */
     public function show(Pegawai $pegawai)
     {
-        return view('pegawai.show', compact('pegawai')); // Return ke view 'pegawai.show'
+            // Inisialisasi tanggal mulai
+    $tanggal_mulai = '2025-01-01'; // Nilai default atau ambil dari input request
+
+    // Ambil data untuk dashboard
+    $pegawaicuti = Cuti::where('tanggal_mulai', $tanggal_mulai)->first();
+        return view('pegawai.show', compact('pegawai', 'pegawaicuti')); // Return ke view 'pegawai.show'
     }
 
     /**
@@ -82,7 +99,12 @@ class PegawaiController extends Controller
      */
     public function edit(Pegawai $pegawai)
     {
-        return view('pegawai.edit', compact('pegawai')); // Return ke view 'pegawai.edit'
+            // Inisialisasi tanggal mulai
+    $tanggal_mulai = '2025-01-01'; // Nilai default atau ambil dari input request
+
+    // Ambil data untuk dashboard
+    $pegawaicuti = Cuti::where('tanggal_mulai', $tanggal_mulai)->first();
+        return view('pegawai.edit', compact('pegawai', 'pegawaicuti')); // Return ke view 'pegawai.edit'
     }
 
     /**
@@ -117,4 +139,3 @@ class PegawaiController extends Controller
         return redirect()->route('pegawai.index')->with('success', 'Pegawai berhasil dihapus.');
     }
 }
-

@@ -71,7 +71,7 @@
 
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('users.index') }}">
-                    <i class="fas fa-fw fa-users"></i>
+                    <i class="fas fa-fw fa-user"></i>
                     <span>user</span>
                 </a>
             </li>
@@ -129,7 +129,7 @@
                         <!-- User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Admin</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->name }}</span>
                                 <img class="img-profile rounded-circle" src="{{ asset('img/undraw_profile.svg') }}">
                             </a>
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -140,6 +140,42 @@
                                         Logout
                                     </button>
                                 </form>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown no-arrow mx-1">
+                            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-bell fa-fw"></i>
+                                <!-- Counter - Alerts -->
+                                <span class="badge badge-danger badge-counter">3+</span>
+                            </a>
+                            <!-- Dropdown - Alerts -->
+                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
+                                <h6 class="dropdown-header">
+                                    Pemberitahuan Cuti
+                                </h6>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="mr-3">
+                                        <div class="icon-circle bg-primary">
+                                            <i class="fas fa-file-alt text-white"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        @if ($pegawaicuti)
+                                            <div class="small text-gray-500">{{ \Carbon\Carbon::parse($pegawaicuti->tanggal_mulai)->format('d F Y') }}</div>
+                                            <span class="font-weight-bold">
+                                                Pengajuan Cuti Anda Pada Tanggal
+                                                {{ \Carbon\Carbon::parse($pegawaicuti->tanggal_mulai)->format('d F Y') }}
+                                                Sampai Dengan Tanggal
+                                                {{ \Carbon\Carbon::parse($pegawaicuti->tanggal_selesai)->format('d F Y') }}
+                                                Belum Disetujui Oleh Admin
+                                            </span>
+                                        @else
+                                            <p>Belum ada data cuti pada tanggal tersebut.</p>
+                                        @endif
+                                    </div>
+
+
+                                </a>
                             </div>
                         </li>
                     </ul>

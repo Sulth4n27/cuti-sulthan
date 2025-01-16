@@ -11,7 +11,7 @@ class Pegawai extends Model
 
     protected $fillable =
     ['nama','nip','nik', 'status', 'jabatan', 'golongan',
-    'jeniskelamin','alamat'];
+    'jeniskelamin','alamat', 'tanggal_mulai'];
 
     public function cutis()
     {

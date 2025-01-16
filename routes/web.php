@@ -11,10 +11,10 @@ use Illuminate\Support\Facades\Auth;
 
 
 // Route untuk Dashboard
-Route::middleware('auth')->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+// Route::middleware('auth')->get('/', function () {
+//     return view('dashboard');
+// })->name('dashboard');
+Route::get('/', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
 
 
 // Route resource untuk Pegawai
@@ -39,9 +39,9 @@ Route::get('/laporan/cuti/pdf', [LaporanController::class, 'exportCutiPDF'])->na
 
 
 // Route fallback untuk menangani halaman yang tidak ditemukan
-Route::fallback(function () {
-    return view('errors.404'); // Ganti dengan halaman 404 Anda
-});
+// Route::fallback(function () {
+//     return view('errors.404'); // Ganti dengan halaman 404 Anda
+// });
 
 // ini untuk ke home
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
