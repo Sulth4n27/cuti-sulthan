@@ -99,12 +99,12 @@
                             <td>{{ $pegawai->jeniskelamin }}</td>
                             <td>{{ $pegawai->alamat }}</td>
                             <td>
-                                <a href="{{ route('pegawai.show', $pegawai) }}" class="btn btn-info btn-sm">Detail</a>
-                                <a href="{{ route('pegawai.edit', $pegawai) }}" class="btn btn-warning btn-sm">Edit</a>
+                                <a href="{{ route('pegawai.show', $pegawai) }}" class="btn btn-info btn-sm"><i class="fas fa-eyes"></i>Detail</a>
+                                <a href="{{ route('pegawai.edit', $pegawai) }}" class="btn btn-sm btn-primary"><i class="fas fa-pen"></i>Edit</a>
                                 <form action="{{ route('pegawai.destroy', $pegawai) }}" method="POST" class="d-inline">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
+                                    <button type="submit"class="btn btn-sm btn-danger"><i class="fas fa-trash"></i>Hapus</button>
                                 </form>
                             </td>
                         </tr>

@@ -26,11 +26,11 @@
                             <td>{{ $user->username }}</td>
                             <td>{{ ucfirst($user->role) }}</td>
                             <td>
-                                <a href="#" class="btn btn-warning btn-sm">Edit</a>
+                                <a href="{{ route('users.edit')}}" class="btn btn-warning btn-sm"><i class="fas fa-pen"></i></a>
                                 <form action="#" method="POST" class="d-inline">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
+                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
                                 </form>
                             </td>
                         </tr>

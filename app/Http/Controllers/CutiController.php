@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cuti;
 use App\Models\Pegawai;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class CutiController extends Controller
@@ -28,13 +29,15 @@ class CutiController extends Controller
     // Ambil data untuk dashboard
     $pegawaicuti = Cuti::where('tanggal_mulai', $tanggal_mulai)->first();
         $pegawais = Pegawai::all();
-        return view('cuti.create', compact('pegawais', 'pegawaicuti'));
+        $user = User::all();
+        return view('cuti.create', compact('pegawais', 'pegawaicuti', 'user'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
             'pegawai_id' => 'required',
+            'user_id' => 'required',
             'jenis_cuti' => 'required',
             'tanggal_mulai' => 'required|date',
             'tanggal_selesai' => 'required|date|after_or_equal:tanggal_mulai',
@@ -87,6 +90,7 @@ if ($pegawaiCuti) {
     {
         $request->validate([
             'pegawai_id' => 'required',
+            'user_id' => 'required',
             'jenis_cuti' => 'required|in:cuti sakit,cuti menikah,cuti melahirkan,cuti pendidikan',
             'tanggal_mulai' => 'required|date',
             'tanggal_selesai' => 'required|date|after_or_equal:tanggal_mulai',

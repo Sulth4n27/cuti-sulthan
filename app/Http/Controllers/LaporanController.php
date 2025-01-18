@@ -37,6 +37,7 @@ class LaporanController extends Controller
     public function exportCutiPDF()
     {
         $cutis = Cuti::with('pegawai')->get();
+        
         $pdf = Pdf::loadView('laporan.cuti_pdf', compact('cutis'))->setPaper('a4', 'landscape');
         return $pdf->download('laporan_cuti.pdf');
     }

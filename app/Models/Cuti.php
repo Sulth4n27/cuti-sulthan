@@ -11,6 +11,7 @@ class Cuti extends Model
 
     protected $fillable = [
         'pegawai_id',
+        'user_id',
         'jenis_cuti',
         'tanggal_mulai',
         'tanggal_selesai',
@@ -21,6 +22,11 @@ class Cuti extends Model
     public function pegawai()
     {
         return $this->belongsTo(Pegawai::class, 'pegawai_id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function getTanggalMulaiAttribute()

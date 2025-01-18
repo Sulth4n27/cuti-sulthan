@@ -6,6 +6,10 @@
 <div class="container-fluid">
     <h1 class="h3 mb-4 text-gray-800">Laporan Cuti</h1>
     <a href="{{ route('laporan.cuti.pdf') }}" class="btn btn-danger mb-3">Export PDF</a>
+    <label for="start_date">Tanggal Mulai:</label>
+        <input type="date" id="start_date" class="form-control d-inline" style="width: auto;">
+        <label for="end_date">Tanggal Selesai:</label>
+        <input type="date" id="end_date" class="form-control d-inline" style="width: auto;">
     <div class="card shadow">
         <div class="card-body">
             <table class="table table-bordered">
@@ -34,5 +38,7 @@
             </table>
         </div>
     </div>
+
+    
 </div>
 @endsection

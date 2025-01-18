@@ -63,6 +63,24 @@
                     @enderror
                 </div>
 
+                <div class="form-group">
+                    <label for="user_id">Nama user</label>
+                    <select name="user_id" id="user_id" class="form-control @error('user_id') is-invalid @enderror">
+                        <option value="">-- Pilih user --</option>
+                        @foreach ($user as $users)
+                        <option value="{{ $users->id }}" {{ old('user_id') == $users->id ? 'selected' : '' }}>
+                            {{ $users->name }}
+                        </option>
+                        @endforeach
+                    </select>
+                    @error('user_id')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                    @enderror
+                </div>
+
+
                 <!-- Tanggal Mulai -->
                 <div class="form-group">
                     <label for="tanggal_mulai">Tanggal Mulai</label>

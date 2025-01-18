@@ -32,6 +32,7 @@
         <tr>
             <th>No</th>
             <th>Nama Pegawai</th>
+            <th>Nama User</th>
             <th>Jenis Cuti</th>
             <th>Tanggal Mulai</th>
             <th>Tanggal Selesai</th>
@@ -47,6 +48,7 @@
         <tr>
             <td>{{ $loop->iteration }}</td>
             <td>{{ $cuti->pegawai->nama }}</td>
+            <td>{{ $cuti->user->name }}</td>
             <td>{{ $cuti->jenis_cuti }}</td>
             <td>{{ $cuti->tanggal_mulai }}</td>
             <td>{{ $cuti->tanggal_selesai }}</td>
@@ -77,11 +79,11 @@
 
 
                 <td>
-                    <a href="{{ route('cuti.edit', $cuti->id) }}" class="btn btn-sm btn-primary">Edit</a>
+                    <a href="{{ route('cuti.edit', $cuti->id) }}" class="btn btn-sm btn-primary"><i class="fas fa-pen"></i></a>
                     <form action="{{ route('cuti.destroy', $cuti->id) }}" method="POST" style="display:inline;">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-sm btn-danger">Hapus</button>
+                        <button type="submit" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
                     </form>
                 </td>
 
