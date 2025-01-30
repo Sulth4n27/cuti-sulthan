@@ -27,12 +27,8 @@ Route::post('/cuti/{id}/update-status', [CutiController::class, 'updateStatus'])
 
 
 // Route untuk User & Admin
-Route::get('users/create', [UserController::class, 'create'])->name('users.create');
-Route::get('users/edit', [UserController::class, 'edit'])->name('users.edit');
-Route::post('users', [UserController::class, 'store'])->name('users.store');
-Route::put('/users/{id}', [UserController::class, 'update'])->name('users.update');
-Route::get('users', [UserController::class, 'index'])->name('users.index');
-Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
+Route::resource('users', UserController::class);
+
 
 
 

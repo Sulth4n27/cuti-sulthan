@@ -38,7 +38,6 @@
                 <td>{{ $cuti->jenis_cuti }}</td>
                 <td>{{ $cuti->tanggal_mulai }}</td>
                 <td>{{ $cuti->tanggal_selesai }}</td>
-                <td>{{ $cuti->alasan }}</td>
             </tr>
             @endforeach
         </tbody>

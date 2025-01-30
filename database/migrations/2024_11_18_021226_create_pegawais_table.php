@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('pegawais', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
-            $table->integer('nip');
-            $table->integer('nik');
+            $table->biginteger('nip');
+            $table->biginteger('nik');
             $table->string('status');
             $table->string('jabatan');
             $table->string('golongan');

@@ -18,7 +18,7 @@
                     </ul>
                 </div>
                 @endif
-                
+
             <h4>Form Tambah User</h4>
             <form action="{{ route('users.store') }}" method="POST">
                 @csrf
@@ -38,7 +38,7 @@
                     <label for="role">Role</label>
                     <select class="form-control" id="role" name="role" required>
                         <option value="admin">Admin</option>
-                        <option value="pegawai">Pegawai</option>
+                        <option value="user">user</option>
                     </select>
                 </div>
                 <button type="submit" class="btn btn-primary">Simpan</button>

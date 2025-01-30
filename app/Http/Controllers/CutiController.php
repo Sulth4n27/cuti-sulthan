@@ -37,11 +37,10 @@ class CutiController extends Controller
     {
         $request->validate([
             'pegawai_id' => 'required',
-            'user_id' => 'required',
+            'user_id' => 'nullable',
             'jenis_cuti' => 'required',
             'tanggal_mulai' => 'required|date',
             'tanggal_selesai' => 'required|date|after_or_equal:tanggal_mulai',
-            'alasan' => 'required',
             'status' => 'pending',
 
         ]);
@@ -90,11 +89,10 @@ if ($pegawaiCuti) {
     {
         $request->validate([
             'pegawai_id' => 'required',
-            'user_id' => 'required',
+            'user_id' => 'nullable',
             'jenis_cuti' => 'required|in:cuti sakit,cuti menikah,cuti melahirkan,cuti pendidikan',
             'tanggal_mulai' => 'required|date',
             'tanggal_selesai' => 'required|date|after_or_equal:tanggal_mulai',
-            'alasan' => 'required',
         ]);
 
         $cuti->update($request->all());

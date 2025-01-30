@@ -86,9 +86,8 @@ class UserController extends Controller
         return redirect()->route('users.index')->with('success', 'User berhasil diedit.');
     }
 
-    public function destroy($id)
+    public function destroy(User $user)
 {
-    $user = User::findOrFail($id); // Cari user berdasarkan ID, atau tampilkan 404 jika tidak ditemukan
     $user->delete(); // Hapus user dari database
 
     return redirect()->route('users.index')->with('success', 'User berhasil dihapus.');

@@ -79,17 +79,6 @@
     @enderror
 </div>
 
-<!-- Alasan -->
-<div class="form-group">
-    <label for="alasan">Alasan</label>
-    <textarea name="alasan" id="alasan" rows="3" class="form-control @error('alasan') is-invalid @enderror" placeholder="Masukkan alasan atau alasan cuti">{{ old('alasan') }}</textarea>
-    @error('alasan')
-    <div class="invalid-feedback">
-        {{ $message }}
-    </div>
-    @enderror
-</div>
-
 <div class="form-group">
     <label for="status">Status Cuti</label>
     <select name="status" id="status" class="form-control">

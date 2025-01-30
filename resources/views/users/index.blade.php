@@ -26,8 +26,8 @@
                             <td>{{ $user->username }}</td>
                             <td>{{ ucfirst($user->role) }}</td>
                             <td>
-                                <a href="{{ route('users.edit')}}" class="btn btn-warning btn-sm"><i class="fas fa-pen"></i></a>
-                                <form action="#" method="POST" class="d-inline">
+                                <a href="{{ route('users.edit', $user)}}" class="btn btn-warning btn-sm"><i class="fas fa-pen"></i></a>
+                                <form action="{{ route('users.destroy', $user) }}" method="POST" class="d-inline">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>

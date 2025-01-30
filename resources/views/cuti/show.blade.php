@@ -35,10 +35,6 @@
                     <h6 class="font-weight-bold">Tanggal Selesai</h6>
                     <p>{{ \Carbon\Carbon::parse($cuti->tanggal_selesai)->format('d-m-Y') }}</p>
                 </div>
-                <div class="col-md-12">
-                    <h6 class="font-weight-bold">Keterangan</h6>
-                    <p>{{ $cuti->alasan }}</p>
-                </div>
             </div>
         </div>
     </div>

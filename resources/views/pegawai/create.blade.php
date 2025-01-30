@@ -122,8 +122,8 @@
                     <label for="jeniskelamin">Jeniskelamin</label>
                     <select name="jeniskelamin" id="jeniskelamin" class="form-control @error('jeniskelamin') is-invalid @enderror">
                         <option value="" disabled selected>-- Pilih jenis kelamin anda --</option>
-                        <option value="LK" {{ old('jeniskelamin', $pegawai->jeniskelamin ?? '') == 'LK' ? 'selected' : '' }}>LK</option>
-                        <option value="PR" {{ old('jeniskelamin', $pegawai->jeniskelamin ?? '') == 'PR' ? 'selected' : '' }}>PR</option>
+                        <option value="LAKI-LAKI" {{ old('jeniskelamin', $pegawai->jeniskelamin ?? '') == 'LALI-LAKI' ? 'selected' : '' }}>LAKI-LAKI</option>
+                        <option value="PEPEMPUAN" {{ old('jeniskelamin', $pegawai->jeniskelamin ?? '') == 'PEREMPUAN' ? 'selected' : '' }}>PEREMPUAN</option>
                     </select>
                     @error('jeniskelamin')
                     <div class="invalid-feedback">

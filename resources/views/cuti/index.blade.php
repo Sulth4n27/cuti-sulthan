@@ -32,11 +32,10 @@
         <tr>
             <th>No</th>
             <th>Nama Pegawai</th>
-            <th>Nama User</th>
+            {{-- <th>Nama User</th> --}}
             <th>Jenis Cuti</th>
             <th>Tanggal Mulai</th>
             <th>Tanggal Selesai</th>
-            <th>Alasan</th>
             @if (Auth::check() && Auth::user()->role === 'admin')
             <th>status</th>
             @endif
@@ -48,11 +47,10 @@
         <tr>
             <td>{{ $loop->iteration }}</td>
             <td>{{ $cuti->pegawai->nama }}</td>
-            <td>{{ $cuti->user->name }}</td>
+            {{-- <td>{{ $cuti->user->name }}</td> --}}
             <td>{{ $cuti->jenis_cuti }}</td>
             <td>{{ $cuti->tanggal_mulai }}</td>
             <td>{{ $cuti->tanggal_selesai }}</td>
-            <td>{{ $cuti->alasan }}</td>
             @if (Auth::check() && Auth::user()->role === 'admin')
             <td>
 

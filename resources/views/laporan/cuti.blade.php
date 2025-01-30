@@ -20,7 +20,6 @@
                         <th>Jenis Cuti</th>
                         <th>Tanggal Mulai</th>
                         <th>Tanggal Selesai</th>
-                        <th>Alasan</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -31,7 +30,6 @@
                         <td>{{ $cuti->jenis_cuti }}</td>
                         <td>{{ $cuti->tanggal_mulai }}</td>
                         <td>{{ $cuti->tanggal_selesai }}</td>
-                        <td>{{ $cuti->alasan }}</td>
                     </tr>
                     @endforeach
                 </tbody>
@@ -39,6 +37,6 @@
         </div>
     </div>
 
-    
+
 </div>
 @endsection

@@ -63,7 +63,7 @@
                     @enderror
                 </div>
 
-                <div class="form-group">
+                {{-- <div class="form-group">
                     <label for="user_id">Nama user</label>
                     <select name="user_id" id="user_id" class="form-control @error('user_id') is-invalid @enderror">
                         <option value="">-- Pilih user --</option>
@@ -78,7 +78,7 @@
                         {{ $message }}
                     </div>
                     @enderror
-                </div>
+                </div> --}}
 
 
                 <!-- Tanggal Mulai -->
@@ -103,16 +103,6 @@
                     @enderror
                 </div>
 
-                <!-- Alasan -->
-                <div class="form-group">
-                    <label for="alasan">Alasan</label>
-                    <textarea name="alasan" id="alasan" rows="3" class="form-control @error('alasan') is-invalid @enderror" placeholder="Masukkan alasan cuti">{{ old('alasan') }}</textarea>
-                    @error('alasan')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                    @enderror
-                </div>
 
                 <!-- Submit Button -->
                 <button type="submit" class="btn btn-primary">
